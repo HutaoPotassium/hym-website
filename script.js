@@ -164,6 +164,7 @@ const musicLists = {
 			src: "music/genshin/HOYO-MiX - 清润玉响 A Mild Tale Untold.ogg",
 			name: "正在播放：清润玉响 A Mild Tale Untold"
 		},
+		{
 			src: "music/genshin/HOYO-MiX - 柔灯轻漾时 Lumidouce's Repose.ogg",
 			name: "正在播放：柔灯轻漾时 Lumidouce's Repose"
 		},
