@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+     <head><!-- 创造性：欢迎页专辑图动画；展示页专辑图滚动条+悬停放大；歌曲播放逻辑，选择“随机一首”则播放完后播放默认曲库，选择“连播”则在指定曲库内持续随机播放 -->
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>HOYO-MIX 音乐世界</title>
+          <link rel="stylesheet" href="style.css" />
+     </head>
+     <body>
+          <div id="welcome">
+               <div class="image-ring">
+                    <img src="image/album-cover/烬火.jpg" class="album-cover" style="top: 0%; left: 1.5%;" />
+                    <img src="image/album-cover/行于命途vol.2.png" class="album-cover" style="top: 0%; left: 41.5%;" />
+                    <img src="image/album-cover/一颗方糖悬滞的时间.webp" class="album-cover" style="top: 70%; left: 1.5%;" />
+                    <img src="image/album-cover/沉玉沐芳.jpg" class="album-cover" style="top: 0%; left: 81.5%;" />
+                    <img src="image/album-cover/不乱不破.jpg" class="album-cover" style="top: 0%; left: 21.5%;" />
+                    <img src="image/album-cover/regression.jpg" class="album-cover" style="top: 0%; left: 61.5%;" />
+                    <img src="image/album-cover/TruE.jpg" class="album-cover" style="top: 35%; left: 1.5%;" />
+                    <img src="image/album-cover/未行之路.jpg" class="album-cover" style="top: 35%; left: 81.5%;" />
+                    <img src="image/album-cover/飞来波的圣状（下篇）.jpg" class="album-cover" style="top: 70%; left: 21.5%;" />
+                    <img src="image/album-cover/空气蛹INSIDE.jpg" class="album-cover" style="top: 70%; left: 41.5%;" />
+                    <img src="image/album-cover/oracle.jpg" class="album-cover" style="top: 70%; left: 61.5%;" />
+                    <img src="image/album-cover/不眠之夜.jpg" class="album-cover" style="top: 70%; left: 81.5%;" />
+               </div>
+               <h1 class="fade-in" style="animation-delay: 1.4s;"> 欢迎来到 <img src="image/Logo/hym.png" alt="HOYO-MIX logo" class="logo-inline" /> 的音乐世界 </h1>
+               <button class="fade-in" style="animation-delay: 2s;" onclick="startExperience()">开始体验</button>
+          </div>
+          <main style="display: none;">
+               <section id="music-controls">
+                    <button class="music-btn" onclick="playOnceFrom('hoyomix')">🎵 随机一首 HOYO-MIX</button>
+                    <button class="music-btn" onclick="playOnceFrom('genshin')">🎵 随机一首 原神</button>
+                    <button class="music-btn" onclick="playOnceFrom('starrail')">🎵 随机一首 星穹铁道</button>
+                    <button class="music-btn" onclick="playOnceFrom('zzz')">🎵 随机一首 绝区零</button>
+                    <hr>
+                    <button class="music-btn" onclick="playLoopFrom('hoyomix')">🔁 连播 HOYO-MIX</button>
+                    <button class="music-btn" onclick="playLoopFrom('genshin')">🔁 连播 原神</button>
+                    <button class="music-btn" onclick="playLoopFrom('starrail')">🔁 连播 星穹铁道</button>
+                    <button class="music-btn" onclick="playLoopFrom('zzz')">🔁 连播 绝区零</button>
+               </section>
+               <section id="navbackground"></section>
+               <section id="game-buttons" class="navbar">
+                    <button class="nav-btn" onclick="showContent('hoyomix')">HOYO-MIX</button>
+                    <button class="nav-btn" onclick="showContent('genshin')">原神</button>
+                    <button class="nav-btn" onclick="showContent('starrail')">崩坏：星穹铁道</button>
+                    <button class="nav-btn" onclick="showContent('zzz')">绝区零</button>
+               </section>
+               <audio id="musicPlayer" preload="auto"></audio>
+               <section id="game-content">
+                    <div id="hoyomix" class="game-section active">
+                         <img src="image/HOYO-MIX/用音乐构筑世界.png" class="create-world" style="top: 15%; left: 40%;" />
+                         <img src="image/Logo/hym.png" style="position: absolute; top: 40%; left: 20%;width: 200px; height: 200px;border: 2px solid black;">
+                         <div id="HOYO-MIX-description" class="description">
+                              <p>HOYO-MIX是上海米哈游网络科技股份有限公司旗下的原创音乐团队，负责为米哈游的各大产品和衍生物创作音乐。</p>
+                              <p>也许近几年里，你听说过这些作品:《尘世闲游》《神女劈观》《水龙吟》等，它们都是被各大平台引用、被主流媒体报道表扬的典例，影响力已经达到了游戏之外；它们和游戏内的众多优秀配乐一起，都出自这支音乐团队之手。截至2025年5月底，HOYO-MIX发布的原创作品已经超过2800首。</p>
+                              <p>当然没有听过，或者听过但觉得不对自己的胃口也没有关系。如其名，“ <strong>mix</strong>”一直是这支团队最亮眼的特点， 团队成员始终保持开放的心态不断探索音乐的边界，这使得他们的作品极其多元。 <strong>2800多支乐曲足以称得上一个大千世界：舒缓的，激烈的，古风，音乐剧，动漫风，史诗，纯钢琴，时代老歌，斯瓦西里语，楚辞体加现代管弦乐加电吉他……团队探索的维度实在多到难以列尽。</strong>在如此多的风格中，相信有那么几首曲子能够触动你的心弦。 </p>
+                              <p>团队也与包括伦敦交响乐团、布达佩斯交响乐团等世界知名乐团保持合作，邀请合作的知名艺人更是不在少数：张杰、魏晨、Aimer、几田莉拉、Jake Miller、Reol、周深……</p>
+                              <p>无需游戏经历的加持，无需品牌光环的渲染……欢迎！欢迎来到HOYO-MIX的世界！祝愿你能找到与自己共鸣的曲子。</p>
+                              <p>(受限于作者的游戏经历，本网站所有音乐素材主要来自游戏作品《原神》《崩坏·星穹铁道》《绝区零》，部分来自《崩坏3》)</p>
+                         </div>
+                         <div id="album-scroll">
+                              <img src="image/total album-cover/A Post-Honkai Odyssey 2.webp" alt="A Post-Honkai Odyssey 2.webp">
+                              <img src="image/total album-cover/洞穴寓言(上篇).webp" alt="洞穴寓言(上篇).webp">
+                              <img src="image/total album-cover/轻涟.png" alt="轻涟.png">
+                              <img src="image/total album-cover/佚落迁忘之岛.webp" alt="佚落迁忘之岛.webp">
+                              <img src="image/total album-cover/Alive.webp" alt="Alive.webp">
+                              <img src="image/total album-cover/洞穴寓言（中篇）.webp" alt="洞穴寓言（中篇）.webp">
+                              <img src="image/total album-cover/闪耀的群星 .webp" alt="闪耀的群星 .webp">
+                              <img src="image/total album-cover/于星的彼岸.webp" alt="于星的彼岸.webp">
+                              <img src="image/total album-cover/BITE！.webp" alt="BITE！.webp">
+                              <img src="image/total album-cover/飞彩镌流年.webp" alt="飞彩镌流年.webp">
+                              <img src="image/total album-cover/闪耀的群星vol.2.webp" alt="闪耀的群星vol.2.webp">
+                              <img src="image/total album-cover/在海的指尖.webp" alt="在海的指尖.webp">
+                              <img src="image/total album-cover/Da Capo.webp" alt="Da Capo.webp">
+                              <img src="image/total album-cover/闪耀的群星vol.3.jpg" alt="闪耀的群星vol.3.jpg">
+                              <img src="image/total album-cover/长生梦短.png" alt="长生梦短.png">
+                              <img src="image/total album-cover/啁哳流变之砂.jpg" alt="啁哳流变之砂.jpg">
+                              <img src="image/total album-cover/飞来波的圣状（上篇）.jpg" alt="飞来波的圣状（上篇）.jpg">
+                              <img src="image/total album-cover/ELYSIUM.webp" alt="ELYSIUM.webp">
+                              <img src="image/total album-cover/飞来波的圣状（下篇）.jpg" alt="飞来波的圣状（下篇）.jpg">
+                              <img src="image/total album-cover/闪耀的群星vol.4.webp" alt="闪耀的群星vol.4.webp">
+                              <img src="image/total album-cover/Fearless.webp" alt="Fearless.webp">
+                              <img src="image/total album-cover/风与牧歌之城.webp" alt="风与牧歌之城.webp">
+                              <img src="image/total album-cover/闪耀的群星vol.5.webp" alt="闪耀的群星vol.5.webp">
+                              <img src="image/total album-cover/珍珠之歌.webp" alt="珍珠之歌.webp">
+                              <img src="image/total album-cover/Moon Halo.webp" alt="Moon Halo.webp">
+                              <img src="image/total album-cover/风与异乡人.webp" alt="风与异乡人.webp">
+                              <img src="image/total album-cover/失控.jpg" alt="失控.jpg">
+                              <img src="image/total album-cover/珍珠之歌vol.2.webp" alt="珍珠之歌vol.2.webp">
+                              <img src="image/total album-cover/My Curse, My Fate.jpg" alt="My Curse, My Fate.jpg">
+                              <img src="image/total album-cover/逝去时光的海洋.webp" alt="逝去时光的海洋.webp">
+                              <img src="image/total album-cover/珍珠之歌vol.3.webp" alt="珍珠之歌vol.3.webp">
+                              <img src="image/total album-cover/珍珠之歌vol.4.jpg" alt="珍珠之歌vol.4.jpg">
+                              <img src="image/total album-cover/何者.webp" alt="何者.webp">
+                              <img src="image/total album-cover/oracle.jpg" alt="oracle.jpg">
+                              <img src="image/total album-cover/红透晚烟青.webp" alt="红透晚烟青.webp">
+                              <img src="image/total album-cover/天琴座+.webp" alt="天琴座+.webp">
+                              <img src="image/total album-cover/Paradox.webp" alt="Paradox.webp">
+                              <img src="image/total album-cover/绘本.webp" alt="绘本.webp">
+                              <img src="image/total album-cover/万流始源之海.jpg" alt="万流始源之海.jpg">
+                              <img src="image/total album-cover/智妙明论之林.jpg" alt="智妙明论之林.jpg">
+                              <img src="image/total album-cover/pinking.webp" alt="pinking.webp">
+                              <img src="image/total album-cover/极限委托.jpg" alt="极限委托.jpg">
+                              <img src="image/total album-cover/未行之路.jpg" alt="未行之路.jpg">
+                              <img src="image/total album-cover/灼火之心.webp" alt="灼火之心.webp">
+                              <img src="image/total album-cover/寂远无妄之国.webp" alt="寂远无妄之国.webp">
+                              <img src="image/total album-cover/小停再出发.webp" alt="小停再出发.webp">
+                              <img src="image/total album-cover/皎月云间之梦.jpg" alt="皎月云间之梦.jpg">
+                              <img src="image/total album-cover/regression.jpg" alt="regression.jpg">
+                              <img src="image/total album-cover/Review.webp" alt="Review.webp">
+                              <img src="image/total album-cover/晓.webp" alt="晓.webp">
+                              <img src="image/total album-cover/Rubia.jpg" alt="Rubia.jpg">
+                              <img src="image/total album-cover/金律永谐.webp" alt="金律永谐.webp">
+                              <img src="image/total album-cover/星间旅行.png" alt="星间旅行.png">
+                              <img src="image/total album-cover/烬火.jpg" alt="烬火.jpg">
+                              <img src="image/total album-cover/星空剧场.png" alt="星空剧场.png">
+                              <img src="image/total album-cover/TruE.jpg" alt="TruE.jpg">
+                              <img src="image/total album-cover/Shining Promise in the Sky of Dawn.webp" alt="Shining Promise in the Sky of Dawn.webp">
+                              <img src="image/total album-cover/经过.webp" alt="经过.webp">
+                              <img src="image/total album-cover/星空剧场vol.2.webp" alt="星空剧场vol.2.webp">
+                              <img src="image/total album-cover/Yesterday.webp" alt="Yesterday.webp">
+                              <img src="image/total album-cover/竟夜有辉之燎.jpg" alt="竟夜有辉之燎.jpg">
+                              <img src="image/total album-cover/行于命途vol.1.png" alt="行于命途vol.1.png">
+                              <img src="image/total album-cover/白露澈明之泉.png" alt="白露澈明之泉.png">
+                              <img src="image/total album-cover/绝望吧台.webp" alt="绝望吧台.webp">
+                              <img src="image/total album-cover/行于命途vol.2.png" alt="行于命途vol.2.png">
+                              <img src="image/total album-cover/不及.webp" alt="不及.webp">
+                              <img src="image/total album-cover/空气蛹INSIDE.jpg" alt="空气蛹INSIDE.jpg">
+                              <img src="image/total album-cover/行于命途vol.3.jpg" alt="行于命途vol.3.jpg">
+                              <img src="image/total album-cover/不乱不破.jpg" alt="不乱不破.jpg">
+                              <img src="image/total album-cover/跨越终焉之日.webp" alt="跨越终焉之日.webp">
+                              <img src="image/total album-cover/行于命途vol.4.webp" alt="行于命途vol.4.webp">
+                              <img src="image/total album-cover/不眠之夜.jpg" alt="不眠之夜.jpg">
+                              <img src="image/total album-cover/流星的轨迹.webp" alt="流星的轨迹.webp">
+                              <img src="image/total album-cover/漩涡、落星与冰山.webp" alt="漩涡、落星与冰山.webp">
+                              <img src="image/total album-cover/不虚此行.webp" alt="不虚此行.webp">
+                              <img src="image/total album-cover/流星的轨迹vol.2.webp" alt="流星的轨迹vol.2.webp">
+                              <img src="image/total album-cover/雪融于烬.png" alt="雪融于烬.png">
+                              <img src="image/total album-cover/沉玉沐芳.jpg" alt="沉玉沐芳.jpg">
+                              <img src="image/total album-cover/流星的轨迹vol.3.webp" alt="流星的轨迹vol.3.webp">
+                              <img src="image/total album-cover/遥古喁望之阳.jpg" alt="遥古喁望之阳.jpg">
+                              <img src="image/total album-cover/炽炎交逐之原.png" alt="炽炎交逐之原.png">
+                              <img src="image/total album-cover/千岩旷望.jpg" alt="千岩旷望.jpg">
+                              <img src="image/total album-cover/一颗方糖悬滞的时间.webp" alt="一颗方糖悬滞的时间.webp">
+                              <img src="image/total album-cover/当群星交汇.webp" alt="当群星交汇.webp">
+                              <img src="image/total album-cover/青灯玉砚.webp" alt="青灯玉砚.webp">
+                              <img src="image/total album-cover/遗落之星的梦与叹.webp" alt="遗落之星的梦与叹.webp">
+                         </div>
+                    </div>
+                    <div id="genshin" class="game-section ">
+                         <img src="image/HOYO-MIX/枫丹现场.png" class="impression-image" style="width: 1000px;">
+                         <img src="image/Logo/genshin.png" style="position: absolute; top: 70%; left: 20%;width: 200px; height: auto;border: 2px solid black;">
+                         <div class="description" style="margin: 300px auto 0 auto;">
+                              <p>这是《枫丹》交响乐现场中，乐手演奏glass harmonica的一帧，背景是完整的交响乐团；本场演出中，编曲者更是加入诸如曼陀铃、维奥尔琴等地方乐器，致力于打造水之国度“枫丹”（原型：法国、意大利等国家）的地域色彩。</p>
+                              <p>不止《枫丹》，《原神》中大部分乐曲都是以管弦乐为底，在其上添加各种地方元素来体现不同国家的文化差异。在“须弥”（原型：中东地区），你可以听到具有异域风情的木管乐器和不按常理出牌的节奏型；到了“璃月”（原型：中国），自然是一众民族乐器和古体歌词……</p>
+                              <p>当然，现代电子乐在《原神》中并非没有一席之地。在《原神》的音乐语言中，传统管弦乐一般用于描绘游戏中“提瓦特”大陆上的事物，而现代电子乐则常用于不属于这个世界，也就是来自天外的事物和力量。面对天外强敌“吞星之鲸”时的二阶段战斗曲《灾蚀的痕影》就是一个很好的例子。另外，部分极具力量感的场景也会用到电子乐。</p>
+                         </div>
+                    </div>
+                    <div id="starrail" class="game-section">
+                         <img src="image/HOYO-MIX/银河歌者.png" class="impression-image" style="width: 500px;">
+                         <img src="image/Logo/hsr.png" style="position: absolute; top: 50%; left: 20%;width: 200px; height: auto;border: 2px solid black;">
+                         <div class="description" style="margin: 300px auto 0 auto;">
+                              <p>《崩坏·星穹铁道》的游戏背景设在一辆太空列车上，主角随着列车周游各方星球。在游戏场景基本为未来风格的前提下，游戏音乐中的现代电子乐和合成器音效的占比就非常大了。游戏音乐组的部分成员来自《崩坏3》音乐组，而《崩坏3》的背景设立于异世界。</p>
+                              <p>整体来说，《崩坏·星穹铁道》的音乐大多具有科技感、未来感。</p>
+                              <p>图为游戏角色、“银河歌者”知更鸟，专辑《空气蛹INSIDE》便是为她打造，并邀请了歌手Chevy进行演绎。</p>
+                         </div>
+                    </div>
+                    <div id="zzz" class="game-section">
+                         <img src="image/HOYO-MIX/乙.png" class="impression-image" style="width: 800px;">
+                         <img src="image/Logo/zzz.jpg" style="position: absolute; top: 65%; left: 20%;width: 200px; height: auto;border: 2px solid black;">
+                         <div class="description" style="margin: 330px auto 0 auto;">
+                              <p>相比《原神》《崩坏·星穹铁道》，《绝区零》会更加贴近现实。游戏中大部分场景音乐都体现出日常化、生活化的特征，这同时也与“空洞”（游戏设定中的一种恶劣灾害）中的快节奏战斗形成鲜明对比。</p>
+                              <p>制作人有意在部分音乐的制作中加入粤语、儿童玩具乐器等不常见元素，以复现上世纪九十年代人文风貌的一角。另外，诸如重金属、核嗓等狂野元素也被多次用及，这在前面两款作品中基本没有出现。</p>
+                              <p>绝区零的音乐制作组有他们自己的名字：三Z-studio。</p>
+                              <p>图为游戏中的设计师“乙”，也是绝区零线下音乐节目中演出者常见的形象。</p>
+                         </div>
+                    </div>
+               </section>
+               <span id="currentTrackName"></span>
+               <button id="muteButton">🔈 </button>
+          </main>
+          <footer id="footer" style="display: none">
+               <p>致谢：</p>
+               <p>感谢HOYO-MIX交流群的群友们的专业意见</p>
+               <p>感谢chatGPT、Gemini、DeepSeek<br>和Copilot不遗余力的指导</p>
+               <p>感谢助教们的指点</p>
+               <p>专辑图全部来自apple music</p>
+               <p>游戏/音乐组logo来自萌娘百科</p>
+               <p>其余图片均为自己拍摄</p>
+               <p>音乐文件全部来自qq音乐</p>
+               <p>网站仍在制作中...</p>
+               <p>有任何建议欢迎联系qq：1351290133</p>
+               <p>希望HOYO-MIX被更多人了解口牙(≧∀≦)</p>
+          </footer>
+          <script src="script.js"></script>
+     </body>
+</html>
