@@ -154,7 +154,7 @@ const musicLists = {
 		},
 		{
 			src: "music/genshin/HOYO-MiX - 轻涟 La vaguelette.ogg",
-			name: "正在播放：轻涟 La vaguelette.ogg"
+			name: "正在播放：轻涟 La vaguelette"
 		},
 		{
 			src: "music/genshin/HOYO-MiX - 轻雨何故落 Pluie sur la ville.ogg",
@@ -174,7 +174,7 @@ const musicLists = {
 		},
 		{
 			src: "music/genshin/HOYO-MiX - 玉磬漻漻 Jade Chimes.ogg",
-			name: "正在播放：玉磬漻漻 Jade Chimes.ogg"
+			name: "正在播放：玉磬漻漻 Jade Chimes"
 		},
 		{
 			src: "music/genshin/陈致逸 _ HOYO-MiX - Liyue 璃月.ogg",
